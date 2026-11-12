@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102b46"><meta name="description" content="VITA CMMS - دستیار مدیریت فنی و پیگیری کارها">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>VITA CMMS</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><div><div class="brand">VITA <span>CMMS</span></div><div class="sub">دستیار مدیریت فنی و مهندسی</div></div><button id="installBtn" class="install hidden">نصب برنامه</button></header>
+<main>
+<section class="stats">
+ <article><b id="openCount">۰</b><span>کارهای باز</span></article><article><b id="urgentCount">۰</b><span>فوری</span></article><article><b id="todayCount">۰</b><span>سررسید امروز</span></article>
+</section>
+<section class="panel composer">
+ <div class="section-title"><h2>ثبت کار جدید</h2><span class="tag">ثبت سریع</span></div>
+ <label for="taskTitle">شرح کار یا پیگیری</label>
+ <textarea id="taskTitle" rows="2" placeholder="مثلاً پیگیری اصلاح پوشر بطری کارتونینگ ایما توسط پیمانکار..."></textarea>
+ <div class="voice-row"><button id="voiceBtn" class="voice"><span>🎙</span> ثبت با صدا</button><small id="voiceStatus">برای دیکته فارسی، اجازه میکروفون را فعال کنید.</small></div>
+ <div class="fields">
+  <div><label for="category">دسته‌بندی</label><select id="category"><option>تعمیرات</option><option>PM</option><option>خرید و قطعات</option><option>پیمانکار</option><option>جلسه و پیگیری</option><option>سایر</option></select></div>
+  <div><label for="priority">اولویت</label><select id="priority"><option value="normal">عادی</option><option value="high">مهم</option><option value="urgent">فوری</option></select></div>
+  <div><label for="assignee">مسئول پیگیری</label><input id="assignee" placeholder="مثلاً واحد فنی"></div>
+  <div><label for="dueAt">موعد انجام</label><input id="dueAt" type="datetime-local"></div>
+ </div>
+ <button id="saveBtn" class="primary">＋ ثبت کار</button>
+ <p class="hint">اطلاعات فعلاً فقط روی همین گوشی ذخیره می‌شود. برای پشتیبان‌گیری از گزینه خروجی استفاده کنید.</p>
+</section>
+<section class="panel">
+ <div class="section-title"><h2>فهرست پیگیری‌ها</h2><div class="actions"><button id="notifyBtn" class="light">فعال‌سازی اعلان</button><button id="exportBtn" class="light">خروجی پشتیبان</button><button id="importBtn" class="light">بازیابی</button><input id="importFile" type="file" accept="application/json" hidden></div></div>
+ <div class="filters"><input id="search" placeholder="جستجو در کارها..."><select id="statusFilter"><option value="all">همه وضعیت‌ها</option><option value="open">باز</option><option value="done">انجام‌شده</option></select><select id="categoryFilter"><option value="all">همه دسته‌ها</option><option>تعمیرات</option><option>PM</option><option>خرید و قطعات</option><option>پیمانکار</option><option>جلسه و پیگیری</option><option>سایر</option></select></div>
+ <div id="taskList" class="task-list"><div class="empty">هنوز کاری ثبت نشده است.</div></div>
+</section>
+<section class="footnote">نسخه ۱.۰ · ذخیره‌سازی محلی · مناسب استفاده شخصی</section>
+</main>
+<dialog id="editDialog"><form method="dialog" id="editForm"><div class="section-title"><h2>ویرایش کار</h2><button class="icon-btn" value="cancel">✕</button></div><input id="editId" type="hidden"><label>شرح کار</label><textarea id="editTitle" rows="3"></textarea><div class="fields"><div><label>مسئول</label><input id="editAssignee"></div><div><label>موعد</label><input id="editDue" type="datetime-local"></div><div><label>اولویت</label><select id="editPriority"><option value="normal">عادی</option><option value="high">مهم</option><option value="urgent">فوری</option></select></div><div><label>دسته‌بندی</label><select id="editCategory"><option>تعمیرات</option><option>PM</option><option>خرید و قطعات</option><option>پیمانکار</option><option>جلسه و پیگیری</option><option>سایر</option></select></div></div><button class="primary" value="save" id="updateBtn">ذخیره تغییرات</button></form></dialog>
+</main><script src="app.js"></script>
+</body></html>
