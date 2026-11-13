@@ -321,17 +321,6 @@ $('installBtn').onclick=async()=>{
  deferredPrompt=null;
  $('installBtn').classList.add('hidden');
 };
-$('speakBriefBtn').onclick=()=>{
-  const text=$('dailyBrief').textContent.trim();
-  if(!('speechSynthesis' in window)){
-    alert('مرورگر از خواندن صوتی پشتیبانی نمی‌کند');
-    return;
-  }
-  speechSynthesis.cancel();
-  const msg=new SpeechSynthesisUtterance(text);
-  msg.lang='fa-IR';
-  msg.rate=0.9;
-  speechSynthesis.speak(msg);
-};
+
 render();
 checkDue();
